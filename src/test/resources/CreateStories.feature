@@ -1,5 +1,5 @@
 @CreateStoriesTest
-Feature: Create Users using the SSO Dashboard
+Feature: Create Stories using the Resources Dashboard
 
 	Background: I am in the add new story form
 		Given I am in the Stories Administration page

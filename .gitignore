@@ -9,6 +9,7 @@
 # Mac
 .DS_Store
 # Maven
+*.log
 log/
 target/
 #WebDriver
