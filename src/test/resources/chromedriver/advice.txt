@@ -1,0 +1,2 @@
+#Import in this folder your chromedriver.exe
+#The configuration to use this WebDriver is in "./src/test/java/com/step definition / Hooks.java"
