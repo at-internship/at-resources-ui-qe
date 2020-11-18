@@ -2,9 +2,13 @@ package com.globalClasses;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class BasePages {
 	private WebDriver driver;
@@ -62,5 +66,32 @@ public class BasePages {
 			throw new Exception("Impossible get text to "+element);
 		}
 		return text;
+	}
+
+	public String getItem(By elements) throws Exception {
+		try {
+			String allFields = "";
+			WebElement element = driver.findElement(elements);
+			List<WebElement> getItemByItem = element.findElements(By.cssSelector(" tbody >tr > td"));
+			for (WebElement g : getItemByItem) {
+					String getItem = g.getText();
+					allFields = allFields + getItem;
+			};
+			return allFields;
+		}catch(Exception e){
+			throw new Exception("Impossible select Item: "+e);
+		}
+	}
+	public String clickPagination(By elements, By items) throws Exception {
+		String allItems = "";
+		WebElement nextElement = driver.findElement(elements);
+		String lastElement = nextElement.getAttribute("class");
+		do  {
+			nextElement = driver.findElement(elements);
+			lastElement = nextElement.getAttribute("class");
+			allItems = allItems + getItem(items);
+			nextElement.click();
+		} while (!lastElement.contains("disabled"));
+		return allItems;
 	}
 }
