@@ -30,6 +30,16 @@ public class BasePages {
 			throw new Exception("The element "+element+" is not displayed");
 		}
 	}
+
+	public boolean isNotDisplayed(By element) throws Exception {
+		try {
+			driver.findElement(element).isDisplayed();
+			return false;
+		}catch(Exception e){
+			return true;
+		}
+	}
+
 	public void sendKeys(By element, String key) throws Exception {
 		try {
 			driver.findElement(element).clear();
@@ -68,6 +78,52 @@ public class BasePages {
 		return text;
 	}
 
+	public void deleteFirstStory(By items) throws Exception {
+		try {
+			int counter = 0;
+
+			WebElement element = driver.findElement(items);
+			List<WebElement> getItemByItem = element.findElements(By.cssSelector(" tbody >tr > td > a > i"));
+			for (WebElement g : getItemByItem) {
+				if (counter < 2){
+					String lastElement = g.getAttribute("class");
+					if(lastElement.contains("fa-trash")){
+						g.click();
+					}
+				}else{
+					break;
+				}
+				counter = counter + 1;
+			};
+		}catch(Exception e){
+			throw new Exception("Impossible select Item: "+ e);
+		}
+	}
+
+	public String getFirstId(By items) throws Exception {
+		try {
+			String firstId = "";
+			int counter = 0;
+
+			WebElement element = driver.findElement(items);
+			List<WebElement> getItemByItem = element.findElements(By.cssSelector(" tbody >tr > td"));
+
+			for (WebElement g : getItemByItem) {
+				if (counter == 0){
+					String getItem = g.getText();
+					firstId = firstId + getItem;
+				}else{
+					break;
+				}
+				counter = counter + 1;
+			};
+			return firstId;
+		}catch(Exception e){
+			throw new Exception("Impossible select Item: "+ e);
+		}
+	}
+
+
 	public String getItem(By elements) throws Exception {
 		try {
 			String allFields = "";
@@ -82,6 +138,7 @@ public class BasePages {
 			throw new Exception("Impossible select Item: "+e);
 		}
 	}
+
 	public String clickPagination(By elements, By items) throws Exception {
 		String allItems = "";
 		// WebElement nextElement = driver.findElement(elements);
