@@ -14,5 +14,6 @@ log/
 target/
 #WebDriver
 chromedriver.exe
+chromedriver
 # Mongo
 src/test/resources/config.properties

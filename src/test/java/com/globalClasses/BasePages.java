@@ -84,14 +84,14 @@ public class BasePages {
 	}
 	public String clickPagination(By elements, By items) throws Exception {
 		String allItems = "";
-		WebElement nextElement = driver.findElement(elements);
-		String lastElement = nextElement.getAttribute("class");
-		do  {
-			nextElement = driver.findElement(elements);
-			lastElement = nextElement.getAttribute("class");
+		// WebElement nextElement = driver.findElement(elements);
+		// String lastElement = nextElement.getAttribute("class");
+		// do  {
+		// 	nextElement = driver.findElement(elements);
+		// 	lastElement = nextElement.getAttribute("class");
 			allItems = allItems + getItem(items);
-			nextElement.click();
-		} while (!lastElement.contains("disabled"));
+		// 	nextElement.click();
+		// } while (!lastElement.contains("disabled"));
 		return allItems;
 	}
 }

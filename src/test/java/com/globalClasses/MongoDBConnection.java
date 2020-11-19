@@ -7,6 +7,10 @@ import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+import java.util.Date;
+
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
@@ -85,12 +89,22 @@ public class MongoDBConnection {
 		return exist;
 	}
 
+  public static String setFormatDate(String dates) {
+    Long mili_date = Long.parseLong(dates);
+    Date date = new Date(mili_date);
+    SimpleDateFormat format_date = new SimpleDateFormat("yyyy-MM-dd");
+    format_date.setTimeZone(TimeZone.getTimeZone("UTC"));
+    String date_formated = format_date.format(date);
+
+    return date_formated;
+  }
 
 	public boolean compareAllJsonString(String collection, String object) {
 
 		boolean bool = false;
-		String data = "", name = "", priority = "", description = "";
-		int storyPoints = 0, status = 0, progress = 0;
+		String data = "", name = "", priority = "", description = "", due_date = "", start_date = "";
+    int storyPoints = 0, progress = 0;
+    String status = "";
 
 		MongoCollection<Document> coll = mDataBase.getCollection(collection);
 		FindIterable<Document> findIterable = coll.find();
@@ -103,12 +117,29 @@ public class MongoDBConnection {
 			if (mongo.has("name")) {name = mongo.getString("name");}
 			String[] priorityList = {"HIGH", "MEDIUM", "LOW"};
 			if (mongo.has("priority")) {priority = priorityList[parseInt(mongo.get("priority").toString()) - 1];}
-			if (mongo.has("description")) {description = mongo.getString("description");}
 			if (mongo.has("story_points")) {storyPoints = (int) mongo.get("story_points");}
-			if (mongo.has("progress")) {progress = (int) mongo.get("progress");}
-			if (mongo.has("status")) {status = (int) mongo.get("status");}
-			data = data + id + sprint_id + name + user_id + priority + description + storyPoints + status + progress;
-		}
+      if (mongo.has("progress")) {progress = (int) mongo.get("progress");}
+      
+      if (mongo.has("status")) {
+        status =  mongo.get("status").toString();
+      } else{
+        status = "";
+      }
+
+      if (mongo.has("due_date")) {
+        due_date = MongoDBConnection.setFormatDate(mongo.getJSONObject("due_date").get("$date").toString());
+      } else{
+        due_date = "";
+      }
+
+      if (mongo.has("start_date")) {
+        start_date = MongoDBConnection.setFormatDate(mongo.getJSONObject("start_date").get("$date").toString());
+      } else{
+        start_date = "";
+      }
+
+      data = data + id + sprint_id + name + user_id + priority + storyPoints + status + progress + start_date + due_date;
+    }
 		bool = compareAllJS(data, object);
 
 		return bool;
