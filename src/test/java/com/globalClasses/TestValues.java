@@ -20,6 +20,10 @@ public class TestValues {
 		String string = faker.lorem().fixedString(99);
 		return string;
 	}
+	public String randomProgress() {
+		int progress = (int)(Math.random()*(100-0)+1)+0;
+		return Integer.toString(progress);
+	}
 	public String randomStartDate() {
 		String date = LocalDate.parse(currentDate.format(formater)).plusDays(startRandomPlus).toString();
 		String startDate = date.substring(7) + date.substring(4, 7) + date.substring(0, 4);

@@ -4,15 +4,17 @@ import org.openqa.selenium.By;
 
 public class AddNewStoryPage {
 	private By addStoryTitleLocator = By.xpath("//h3[contains(string(),'New Story')]");
-	private By sprintLocator = By.xpath("//div[2]//select");
-	private By userLocator = By.xpath("//div[3]//select");
-	private By priorityLocator = By.xpath("//div[4]//select");
-	private By nameLocator = By.name("name");
-	private By descriptionLocator = By.name("description");
-	private By acceptanceLocator = By.name("ac");
-	private By storyPointsLocator = By.xpath("//div[6]//select");
-	private By startDateLocator = By.xpath("//div[7]/input[1]");
-	private By dueDateLocator = By.xpath("//div[7]/input[2]");
+	private By sprintLocator = By.id("story_sprintId");
+	private By userLocator = By.id("story_userId");
+	private By priorityLocator = By.id("story_priority");
+	private By nameLocator = By.id("story_name");
+	private By descriptionLocator = By.id("story_description");
+	private By acceptanceLocator = By.id("story_acceptanceCriteria");
+	private By storyPointsLocator = By.id("story_storyPoints");
+	private By progressLocator = By.id("story_progress");
+	private By startDateLocator = By.id("story_startDate");
+	private By dueDateLocator = By.id("story_dueDate");
+	private By statusLocator = By.id("story_status");
 	private By submitLocator = By.xpath("//button[@type='submit']");
 
 	public By getAddStoryTitleLocator() {
@@ -39,11 +41,17 @@ public class AddNewStoryPage {
 	public By getStoryPointsLocator() {
 		return storyPointsLocator;
 	}
+	public By getProgressLocator() {
+		return progressLocator;
+	}
 	public By getStartDateLocator() {
 		return startDateLocator;
 	}
 	public By getDueDateLocator() {
 		return dueDateLocator;
+	}
+	public By getStatusLocator() {
+		return statusLocator;
 	}
 	public By getSubmitLocator() {
 		return submitLocator;

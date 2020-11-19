@@ -6,7 +6,7 @@ Feature: Create Stories using the Resources Dashboard
 		When I do click in the AddNewStory button
 		Then The AddNewStory form should be displayed
 			
-		@HappyPath
+		@C1
 		Scenario: Create a story correctly
 			Given I select a sprint
     		And I select a user
@@ -15,9 +15,11 @@ Feature: Create Stories using the Resources Dashboard
     		And I put a description
     		And I put acceptance criteria
     		And I assign story points
+    		And I put a initial progress
     		And I select a start date
     		And I select a due date
+    		And I assing a status
 			When I do click in the Save button
 			Then I should see an alert of successful story creation
-				And The story should be found by the search function of the page
+				And The story should be found in the Stories Module
 				And The story should be found in the DB

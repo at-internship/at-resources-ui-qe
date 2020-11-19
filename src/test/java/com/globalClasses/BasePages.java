@@ -50,11 +50,16 @@ public class BasePages {
 	}
 	public void selectItem(By element) throws Exception {
 		try {
+			driver.findElement(element).click();
 			Select item = new Select(driver.findElement(element));
-			if(element!=By.xpath("//div[2]//select")) {
-				item.selectByIndex(((int)(Math.random()*(3-0)+1)+0));
-			} else {
+			if(element.equals(By.id("story_sprintId"))) {
 				item.selectByIndex(((int)(Math.random()*(6-0)+1)+0));
+			} else if(element.equals(By.id("story_storyPoints"))){
+				item.selectByIndex(((int)(Math.random()*(5-0)+1)+0));
+			} else if(element.equals(By.id("story_status"))) {
+				item.selectByIndex(((int)(Math.random()*(2-0)+1)+0));
+			} else {
+				item.selectByIndex(((int)(Math.random()*(3-0)+1)+0));
 			}
 		}catch(Exception e){
 			throw new Exception("Impossible select Item: "+element);
