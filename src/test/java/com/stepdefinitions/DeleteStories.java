@@ -18,7 +18,9 @@ public class DeleteStories extends TestBase {
 
     @When("I delete a existent story on the dashboard")
     public void i_delete_a_existent_story_on_the_dashboard() throws Exception {
-        base.deleteFirstStory(usersAP.getStories());
+    	base.click(storiesAP.getPlusButtonLocator(ui.getId()));
+    	base.click(storiesAP.getDeleteInRowLocator(ui.getId()));
+    	//base.deleteFirstStory(usersAP.getStories());
     }
     @Then("I should see an alert of successful story deleted")
     public void i_should_see_an_alert_of_successful_story_deleted() throws Exception {
@@ -26,7 +28,8 @@ public class DeleteStories extends TestBase {
     }
     @Then("I verify in the dashboard if the story does not exist")
     public void i_verify_in_the_dashboard_if_the_story_does_not_exist() throws Exception {
-        assert true == base.isNotDisplayed(deleteAP.confirmElimination(ui.getId()));
+        base.sendKeys(storiesAP.getSearchLocator(), ui.getId());
+    	assert true == base.isNotDisplayed(deleteAP.confirmElimination(ui.getId()));
     }
 
 }

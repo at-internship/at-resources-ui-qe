@@ -8,10 +8,12 @@ public class StoriesAdmonPage {
 	private By successLocator = By.xpath("//div/div[contains(string(),'Successfully')]");
 	private By searchLocator = By.xpath("//input[@type='search']");
 	private By dataInTableLocator;
-	private By editInRowLocator ;
+	private By editInRowLocator;
+	private By deleteInRowLocator;
 	private By plusButtonLocator;
 	private String a = "//tr[contains(string(),'", b="')]";
-	private String c="//span/a[@href='/admin/story/edit/", d="//*[@class='sorting_1'][contains(string(), '", e="']";
+	private String c = "//span/a[@href='/admin/story/edit/", d="//*[@class='sorting_1'][contains(string(), '", e="']";
+	private String f = "//span/a[@href='/admin/story/delete/";
 	public By getStoriesAdmonTitleLocator() {
 		return storiesAdmonTitleLocator;
 	}
@@ -35,5 +37,9 @@ public class StoriesAdmonPage {
 	public By getEditInRowLocator(String id) {
 		editInRowLocator = By.xpath(c+id+e);
 		return editInRowLocator;
+	}
+	public By getDeleteInRowLocator(String id) {
+		deleteInRowLocator = By.xpath(f+id+e);
+		return deleteInRowLocator;
 	}
 }

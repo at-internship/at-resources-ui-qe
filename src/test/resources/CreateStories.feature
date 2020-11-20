@@ -1,4 +1,4 @@
-@CreateStoriesTest
+@Regression
 Feature: Create Stories using the Resources Dashboard
 
 	Background: I am in the add new story form
@@ -6,7 +6,7 @@ Feature: Create Stories using the Resources Dashboard
 		When I do click in the AddNewStory button
 		Then The AddNewStory form should be displayed
 			
-		@C1
+		@Create1
 		Scenario: Create a story correctly
 			Given I select a sprint
     		And I select a user

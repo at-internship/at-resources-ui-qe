@@ -94,6 +94,7 @@ public class CreateStories extends TestBase {
 
 	@Then("The story should be found in the Stories Module")
 	public void the_story_should_be_found_in_the_Stories_Module() throws Throwable {
+		base.sendKeys(storiesAP.getSearchLocator(), name);
 		base.isDisplayed(storiesAP.getDataInTableLocator(name));
 	}
 

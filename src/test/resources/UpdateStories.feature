@@ -1,4 +1,4 @@
-@UpdateStoriesTest
+@Regression
 Feature: Update Stories using the Resources Dashboard
 
 	Background: I am in the add new story form
@@ -7,7 +7,7 @@ Feature: Update Stories using the Resources Dashboard
 		When I do click in the Edit Story button
 		Then The EditStory form should be displayed
 			
-		@U1
+		@Update1
 		Scenario: Update the name of the story
 			Given I put a new name
 			When I do click in the Update button
