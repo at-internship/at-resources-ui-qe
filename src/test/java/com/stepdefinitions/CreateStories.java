@@ -62,6 +62,11 @@ public class CreateStories extends TestBase {
 		base.selectItem(addNSP.getStoryPointsLocator());
 	}
 
+	@Given("I put a initial progress")
+	public void i_put_a_initial_progress() throws Throwable {
+		base.sendKeys(addNSP.getProgressLocator(), values.randomProgress());
+	}
+	
 	@Given("I select a start date")
 	public void i_select_a_start_date() throws Throwable {
 		base.sendKeys(addNSP.getStartDateLocator(), values.randomStartDate());
@@ -71,7 +76,12 @@ public class CreateStories extends TestBase {
 	public void i_select_a_due_date() throws Throwable {
 		base.sendKeys(addNSP.getDueDateLocator(), values.randomDueDate());
 	}
-
+	
+	@Given("I assing a status")
+	public void i_assing_a_status() throws Throwable {
+		base.selectItem(addNSP.getStatusLocator());
+	}
+	
 	@When("I do click in the Save button")
 	public void i_do_click_in_the_Save_button() throws Throwable {
 		base.click(addNSP.getSubmitLocator());
@@ -82,15 +92,15 @@ public class CreateStories extends TestBase {
 		base.waitElement(storiesAP.getSuccessLocator());
 	}
 
-	@Then("The story should be found by the search function of the page")
-	public void the_story_should_be_found_by_the_search_function_of_the_page() throws Throwable {
-		base.sendKeys(storiesAP.getScearchingBarLocator(), name);
+	@Then("The story should be found in the Stories Module")
+	public void the_story_should_be_found_in_the_Stories_Module() throws Throwable {
+		base.sendKeys(storiesAP.getSearchLocator(), name);
 		base.isDisplayed(storiesAP.getDataInTableLocator(name));
 	}
 
 	@Then("The story should be found in the DB")
 	public void the_story_should_be_found_in_the_DB() throws Throwable {
-		String id = base.getText(storiesAP.getFirstIDInTableLocator());
+		String id = base.getText(storiesAP.getDataInTableLocator(name)).toString().substring(0, 24);
 		assert true == MongoDBUtils.existID("TEST", "at-resources-db", "stories", id);
 	}
 }

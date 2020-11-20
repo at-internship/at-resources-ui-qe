@@ -1,4 +1,4 @@
-@GetStoriesTest
+@Regression
 Feature: Get all the stories using the Resource Dashboard
 	@Get1
 	Scenario: Get all the stories
