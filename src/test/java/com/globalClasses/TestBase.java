@@ -11,4 +11,5 @@ public class TestBase {
 	protected TestValues values = new TestValues();
 	protected StoriesAdmonPage storiesAP = new StoriesAdmonPage();
 	protected AddNewStoryPage addNSP = new AddNewStoryPage();
+	protected EditStoriesPage eSP = new EditStoriesPage();
 }

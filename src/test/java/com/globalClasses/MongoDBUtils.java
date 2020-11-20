@@ -8,6 +8,20 @@ public class MongoDBUtils {
 		return exist;
 	}
 
+	public static String getJObjectByID(String env, String mDataBase, String collection, String id) {
+        MongoDBConnection db = new MongoDBConnection(env, mDataBase);
+        String monObj = db.getObjectByID(collection, id);
+        db.close();
+        return monObj;
+    }
+
+    public static String getRandomID(String env, String mDataBase, String collection) {
+        MongoDBConnection db = new MongoDBConnection(env, mDataBase);
+        String id = db.foundRandomID(collection);
+        db.close();
+        return id;
+    }
+	
 	public static boolean compareAllJsonString(String env, String mDataBase, String collection, String json) {
 		MongoDBConnection db = new MongoDBConnection(env, mDataBase);
 		boolean bool;
