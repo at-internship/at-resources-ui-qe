@@ -38,14 +38,14 @@ public class BasePages {
 		}catch(Exception e){
 			return true;
 		}
-	}
+  }
 
 	public void sendKeys(By element, String key) throws Exception {
 		try {
 			driver.findElement(element).clear();
-			driver.findElement(element).sendKeys(key);
+      driver.findElement(element).sendKeys(key);
 		}catch(Exception e){
-			throw new Exception("Impossible sed keys to "+element);
+			throw new Exception("Impossible send keys to " + element);
 		}
 	}
 	public void selectItem(By element) throws Exception {
@@ -67,7 +67,7 @@ public class BasePages {
 	}
 	public void waitElement(By element) throws Exception {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 2);
+			WebDriverWait wait = new WebDriverWait(driver, 5);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(element));
 		}catch(Exception e){
 			throw new Exception("Not Found E: "+element);
@@ -82,28 +82,6 @@ public class BasePages {
 		}
 		return text;
 	}
-
-	/*public void deleteFirstStory(By items) throws Exception {
-		try {
-			int counter = 0;
-
-			WebElement element = driver.findElement(items);
-			List<WebElement> getItemByItem = element.findElements(By.cssSelector(" tbody >tr > td > a > i"));
-			for (WebElement g : getItemByItem) {
-				if (counter < 2){
-					String lastElement = g.getAttribute("class");
-					if(lastElement.contains("fa-trash")){
-						g.click();
-					}
-				}else{
-					break;
-				}
-				counter = counter + 1;
-			};
-		}catch(Exception e){
-			throw new Exception("Impossible select Item: "+ e);
-		}
-	}*/
 
 	public String getFirstId(By items) throws Exception {
 		try {
