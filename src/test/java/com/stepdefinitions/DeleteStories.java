@@ -20,7 +20,6 @@ public class DeleteStories extends TestBase {
     public void i_delete_a_existent_story_on_the_dashboard() throws Exception {
     	base.click(storiesAP.getPlusButtonLocator(ui.getId()));
     	base.click(storiesAP.getDeleteInRowLocator(ui.getId()));
-    	//base.deleteFirstStory(usersAP.getStories());
     }
     @Then("I should see an alert of successful story deleted")
     public void i_should_see_an_alert_of_successful_story_deleted() throws Exception {

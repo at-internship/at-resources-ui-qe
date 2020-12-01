@@ -150,7 +150,7 @@ public class MongoDBConnection {
 			String sprint_id = mongo.getJSONObject("sprint_id").get("$oid").toString();
 			String user_id = mongo.getJSONObject("user_id").get("$oid").toString();
 			if (mongo.has("name")) {name = mongo.getString("name");}
-			String[] priorityList = {"HIGH", "MEDIUM", "LOW"};
+			String[] priorityList = {"High", "Medium", "Low"};
 			if (mongo.has("priority")) {priority = priorityList[parseInt(mongo.get("priority").toString()) - 1];}
 			if (mongo.has("story_points")) {storyPoints = (int) mongo.get("story_points");}
       if (mongo.has("progress")) {progress = (int) mongo.get("progress");}
