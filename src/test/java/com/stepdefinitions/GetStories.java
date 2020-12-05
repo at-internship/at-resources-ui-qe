@@ -12,6 +12,7 @@ public class GetStories extends TestBase{
 
     @When("I compare mongo with stories displayed")
     public void i_compare_mongo_with_stories_displayed() throws Exception {
+    	base.changeEntries(usersAP.getEntries());
         allStories = base.clickPagination(usersAP.nextPage(), usersAP.getStories());
     }
     @Then("I validate the mongodb data and the stories")

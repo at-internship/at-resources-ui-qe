@@ -48,6 +48,16 @@ public class BasePages {
 			throw new Exception("Impossible send keys to " + element);
 		}
 	}
+	
+	public void changeEntries(By element) throws Exception{
+		try {
+			Select item = new Select(driver.findElement(element));
+			item.selectByIndex(3);
+		} catch(StaleElementReferenceException e) {
+			throw new Exception("Imposible select Item: "+e);
+		}
+		}
+
 	public void selectItem(By element) throws Exception {
 		try {
 			driver.findElement(element).click();
